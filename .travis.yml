@@ -1,0 +1,12 @@
+language: php
+
+php:
+- '7.2'
+
+install:
+- yes '' | pecl install swoole
+- composer install
+
+script:
+- php tests/methods.php
+- php tests/memory.php
