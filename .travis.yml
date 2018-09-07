@@ -3,10 +3,22 @@ language: php
 php:
 - '7.2'
 
+dist: trusty
+sudo: false
+
+cache:
+  directories:
+  - ~/.composer
+  - ~/.php-ext
+
+before_install:
+- source <(curl -sL https://github.com/carno-php/travis-ci/raw/master/tests-prepare.sh)
+
 install:
-- yes '' | pecl install swoole
-- composer install
+- composer update
 
 script:
-- php tests/methods.php
-- php tests/memory.php
+- testing
+
+after_success:
+- coveralls

@@ -14,6 +14,11 @@
       "Carno\\HTTP\\": "src"
     }
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Carno\\HTTP\\Tests\\": "tests"
+    }
+  },
   "minimum-stability": "dev",
   "extra": {
     "branch-alias": {
