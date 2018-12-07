@@ -55,11 +55,11 @@ trait Socket
             }
 
             /**
-             * @param bool $sw
+             * @param bool $valid
              */
-            public function sv(bool $sw) : void
+            public function status(bool $valid) : void
             {
-                $this->v = $sw;
+                $this->v = $valid;
             }
 
             /**
@@ -91,7 +91,7 @@ trait Socket
         $http->on('message', static function (SWHClient $c, SWSFrame $f) use ($framing, $socket) {
             switch ($f->opcode) {
                 case WSOpcode::CLOSING:
-                    $socket->sv(false);
+                    $socket->status(false);
                     $framing->message()->close();
                     return;
                 default:
@@ -100,7 +100,7 @@ trait Socket
         });
 
         $http->on('close', static function (SWHClient $c) use ($framing, $socket) {
-            $socket->sv(false);
+            $socket->status(false);
             $framing->message()->close();
         });
 
@@ -116,7 +116,7 @@ trait Socket
             $code = $c->statusCode;
 
             if ($code === 101) {
-                $socket->sv(true);
+                $socket->status(true);
                 return $framing;
             }
 
