@@ -8,7 +8,7 @@
 
 namespace Carno\HTTP\Server;
 
-use Carno\HTTP\Contracts\Server;
+use Carno\HTTP\Contracts\Powered\Server;
 use Carno\Net\Connection as NET;
 use Carno\Net\Contracts\HTTP;
 use Psr\Http\Message\ResponseInterface as Response;

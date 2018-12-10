@@ -9,7 +9,7 @@
 namespace Carno\HTTP\Powered\Swoole;
 
 use function Carno\Coroutine\await;
-use Carno\HTTP\Contracts\Client as API;
+use Carno\HTTP\Contracts\Powered\Client as API;
 use Carno\HTTP\Exception\RequestTimeoutException;
 use Carno\HTTP\Options;
 use Carno\HTTP\Powered\Swoole\Chips\Http;

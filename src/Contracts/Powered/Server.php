@@ -6,7 +6,7 @@
  * Time: 12:50 PM
  */
 
-namespace Carno\HTTP\Contracts;
+namespace Carno\HTTP\Contracts\Powered;
 
 use Carno\Net\Contracts\Conn;
 use Carno\Net\Contracts\HTTP;

@@ -12,6 +12,7 @@ use function Carno\Coroutine\async;
 use Carno\DNS\DNS;
 use Carno\DNS\Result;
 use Carno\HTTP\Client\Methods;
+use Carno\HTTP\Contracts\Client as API;
 use Carno\HTTP\Exception\ClientBindingException;
 use Carno\HTTP\Powered\Swoole\Client as SWClient;
 use Carno\Net\Address;
@@ -23,7 +24,7 @@ use Psr\Http\Message\RequestInterface as Request;
 use Psr\Http\Message\UriInterface as Uri;
 use Closure;
 
-class Client
+class Client implements API
 {
     use SAR, Methods;
 
@@ -83,7 +84,7 @@ class Client
 
     /**
      * @param Request $request
-     * @param Promised $canceller
+     * @param Promised|null $canceller
      * @return Promised
      */
     public function perform(Request $request, Promised $canceller = null) : Promised

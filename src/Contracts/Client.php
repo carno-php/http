@@ -2,33 +2,31 @@
 /**
  * HTTP client API
  * User: moyo
- * Date: 13/09/2017
- * Time: 5:21 PM
+ * Date: 2018-12-08
+ * Time: 21:58
  */
 
 namespace Carno\HTTP\Contracts;
 
-use Carno\HTTP\Options;
-use Carno\Net\Address;
 use Carno\Promise\Promised;
 use Psr\Http\Message\RequestInterface as Request;
 
 interface Client
 {
     /**
-     * HTTP constructor.
-     * @param Address $connect
-     * @param bool $keepalive
-     */
-    public function __construct(Address $connect, bool $keepalive = false);
-
-    /**
-     * Promised actions:
-     *  SUCCESS -> resolve(Carno\HTTP\Standard\Response)
-     *  FAILED  -> throw(Exception)
      * @param Request $request
-     * @param Options $options
+     * @param Promised|null $canceller
      * @return Promised
      */
-    public function execute(Request $request, Options $options) : Promised;
+    public function perform(Request $request, Promised $canceller = null) : Promised;
+
+    /**
+     * @return Promised
+     */
+    public function close() : Promised;
+
+    /**
+     * @return Promised
+     */
+    public function closed() : Promised;
 }
