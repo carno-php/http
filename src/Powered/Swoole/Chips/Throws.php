@@ -36,14 +36,13 @@ trait Throws
             case -1:
                 switch ($c->errCode) {
                     case 61:
-                        // darwin kernel
-                        throw new ConnectionRefusedException($url);
+                        throw new ConnectionRefusedException($url); // darwin kernel
                     case 110:
                         throw new ConnectionTimeoutException($url);
                     case 111:
                         throw new ConnectionRefusedException($url);
                 }
-                throw new RequestFailedException($url);
+                throw new RequestFailedException(sprintf('#%d::%s', $c->errCode, $url));
             case -2:
                 throw new RequestTimeoutException($url);
             case -3:
